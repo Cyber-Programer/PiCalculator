@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiCalculator</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 100vh;
+
+            background-color: #d2d2d29a;
+        }
+
+        .main{
+            width: 500px;
+            background-color: white ;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.668);
+            animation: main 1s;
+
+            
+        }
+
+        @keyframes main {
+            0% {
+                transform: scale(1); /* Changed 'transition' to 'transform' and fixed the scale syntax */
+            }
+
+            100%{
+                transform: scale(1.1);
+            }
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="number"]{
+            width: 80%;
+            height: 20px;
+            margin: 10px 0;
+            border-radius: 7px;
+
+        }
+
+        input[type="submit"]{
+            width: 25%;
+            height: 30px;
+            margin-top: 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 9px;
+        }
+
+        p{
+            font-size: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>(π) Calculation</h1>
+        
+        <hr>
+        <form  method="get" id="cl">
+            <label for="radius">Input radius</label>
+            <input type="number" id="radius" placeholder="Enter radius">
+
+            <input type="submit" value="Enter">
+
+            <p></p>
+        </form>
+    </div>
+</body>
+<script>
+    document.getElementById('cl').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const radius = document.getElementById('radius');
+        const rd = parseFloat(radius.value);
+
+        if (!isNaN(rd)) {
+            const area = Math.PI * rd * rd;
+            console.log(area);
+
+            // Display the result on the page
+            const resultParagraph = document.querySelector('p');
+            resultParagraph.textContent = `The area of the circle with radius ${rd} is: ${area.toFixed(2)}`;
+        } else {
+            console.log('Please enter a valid number');
+        }
+    });
+</script>
+
+</html>
